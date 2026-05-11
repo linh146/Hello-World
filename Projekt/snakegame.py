@@ -53,13 +53,13 @@ while run:
     # Kopfposition im Raster berechnen und grünes Quadrat zeichnen
     head_x = head_column * SQUARE_SIZE
     head_y = head_row * SQUARE_SIZE
-    pygame.draw.rect(screen, (0, 255, 0), (head_x, head_y, SQUARE_SIZE, SQUARE_SIZE))  # Kopf als grünes Quadrat
+    pygame.draw.rect(screen, (24,116,205), (head_x, head_y, SQUARE_SIZE, SQUARE_SIZE))  # Kopf als grünes Quadrat
 
     # Rasterlinien zeichnen
     for i in range(SQUARE_COUNT):  # Schleife über alle Rasterlinien
         line_pos = SQUARE_SIZE * i
-        pygame.draw.line(screen, (0, 0, 0), (line_pos, 0), (line_pos, WIN_SIZE), 2)  # vertikale Linie
-        pygame.draw.line(screen, (0, 0, 0), (0, line_pos), (WIN_SIZE, line_pos), 2)  # horizontale Linie
+        pygame.draw.line(screen, (255, 255, 255), (line_pos, 0), (line_pos, WIN_SIZE), 2)  # vertikale Linie
+        pygame.draw.line(screen, (255, 255, 255), (0, line_pos), (WIN_SIZE, line_pos), 2)  # horizontale Linie
 
 
 
