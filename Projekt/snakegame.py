@@ -56,8 +56,9 @@ while run:
             step_x = 0
             step_y = 1
 
-    #
-    head_column += step_x 
+    body_parts.append((head_column, head_row))
+    
+    head_column += step_x # Kopfposition in der Spalte aktualisieren
     head_row += step_y
 
 
@@ -69,6 +70,13 @@ while run:
     head_x = head_column * SQUARE_SIZE
     head_y = head_row * SQUARE_SIZE
     pygame.draw.rect(screen, (24,116,205), (head_x, head_y, SQUARE_SIZE, SQUARE_SIZE))  # Kopf als grünes Quadrat
+
+    for part in body_parts:
+        part_column = part[0]
+        part_row = part [1]
+        part_x = part_column * SQUARE_SIZE
+        part_y = part_row * SQUARE_SIZE
+        pygame.draw.rect(screen, (24,116,205), head_x, head_y, SQUARE_SIZE, SQUARE_SIZE))
 
     # Rasterlinien zeichnen
     for i in range(SQUARE_COUNT):  # Schleife über alle Rasterlinien
@@ -82,7 +90,6 @@ while run:
     pygame.display.update()  # Anzeige aktualisieren
 
 pygame.display.quit()  # Fenster schließen
-
 
 
 
