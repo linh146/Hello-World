@@ -5,6 +5,7 @@ pygame.init()
 WIN_SIZE = 800  # Fenstergröße: Breite und Höhe in Pixel
 SQUARE_COUNT = 20  # Anzahl der Rasterfelder im Spiel
 SQUARE_SIZE = WIN_SIZE / SQUARE_COUNT  # Größe eines einzelnen Feldes im Raster
+DELAY = 100
 
 screen = pygame.display.set_mode((WIN_SIZE, WIN_SIZE))  # Fenster erstellen
 pygame.display.set_caption("Snake Game")  # Fenstertitel setzen
@@ -17,11 +18,11 @@ if not os.path.exists(background_path):
 background_image = pygame.image.load(background_path)
 background_image = pygame.transform.scale(background_image, (WIN_SIZE, WIN_SIZE))  # Bild auf Fenstergröße skalieren
 
-head_column = 0  # Kopfposition in der Spalte (Rasterx)
-head_row = 0  # Kopfposition in der Zeile (Rastery)
+head_column = SQUARE_COUNT // 2  # Kopfposition in der Spalte (Rasterx) 
+head_row = SQUARE_COUNT // 2  # Kopfposition in der Zeile (Rastery) -> Position mittig eingestellt
 
-x = 50
-y= 70
+step_x = 1 # Schritte minmieren
+step_y = 0
 
 run = True
 while run:
