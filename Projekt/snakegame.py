@@ -21,31 +21,45 @@ background_image = pygame.transform.scale(background_image, (WIN_SIZE, WIN_SIZE)
 head_column = SQUARE_COUNT // 2  # Kopfposition in der Spalte (Rasterx) 
 head_row = SQUARE_COUNT // 2  # Kopfposition in der Zeile (Rastery) -> Position mittig eingestellt
 
-step_x = 1 # Schritte minmieren
+#Schlange bewegt sich permanent in jeweilig gedrückte Taste
+step_x = 0 
 step_y = 0
 
 run = True
 while run:
-    pygame.time.delay(20)  # Kurze Pause, damit das Spiel nicht zu schnell läuft
+    pygame.time.delay(100)  # Kurze Pause, damit das Spiel nicht zu schnell läuft
 
     for event in pygame.event.get():  # Alle Pygame-Ereignisse abfragen
         if event.type == pygame.QUIT:  # Wenn auf das Schließen-Symbol geklickt wurde
             run = False  # Beende die Spielschleife
 
-    # Einfache automatische Bewegung des Objekts
-    x += 1
-    y += 2
+   
 
     # Benutzersteuerung per Pfeiltasten
     keys = pygame.key.get_pressed()  # Alle gedrückten Tasten prüfen
-    if keys[pygame.K_LEFT]:
-        x -= 2
     if keys[pygame.K_RIGHT]:
-        x += 2
-    if keys[pygame.K_UP]:
-        y -= 2
-    if keys[pygame.K_DOWN]:
-        y += 2
+        # Verhindern , dass die Schlange in eigenen Körper bewegt
+        #Nur wenn Schlange nach links -> Bewegungsrichtung rechts möglich
+        if step_x != -1:  
+            step_x = 1
+            step_y = 0
+    elif keys[pygame.K_LEFT]:        # Nur 1 Bedingung erfüllbar durch elif
+        if step_x != 1:
+            step_x = -1
+            step_y = 0
+    elif keys[pygame.K_UP]:
+        if step_y !=1:
+            step_x = 0
+            step_y = -1
+    elif keys[pygame.K_DOWN]:
+        if step_y != -1:
+            step_x = 0
+            step_y = 1
+
+    #
+    head_column += step_x 
+    head_row += step_y
+
 
     # Hintergrundbild zeichnen
     screen.blit(background_image, (0, 0))  # Das geladene Bild in die obere linke Ecke malen
